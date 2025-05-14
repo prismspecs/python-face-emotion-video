@@ -1,140 +1,90 @@
-**README.md**
-
 # AI-Enhanced Facial Emotion Recognition in Video
 
 ## Overview
 
-This project combines facial landmark detection and emotion recognition to analyze emotions in a video using artificial intelligence. It utilizes computer vision techniques, TensorFlow, and Mediapipe to detect facial landmarks and a pre-trained model to predict emotions. The resulting video is annotated with emotion labels for a more immersive viewing experience.
+This project analyzes emotions in video files using facial landmark detection and emotion recognition powered by AI. It uses OpenCV for video processing, Mediapipe for facial landmark detection, and TensorFlow/Keras for emotion recognition with a pre-trained model. The output is a video annotated with emotion labels for each detected face.
 
-## Dependencies
+## Features
+- Detects faces and facial landmarks in video frames
+- Recognizes emotions using a pre-trained deep learning model
+- Annotates video frames with emotion labels
+- Outputs an annotated video file
 
-Ensure you have the following dependencies installed:
-
-- OpenCV (cv2)
+## Tech Stack
+- Python 3.x
+- OpenCV (`cv2`)
 - Mediapipe
 - NumPy
 - TensorFlow (with Keras)
-- Various other Python libraries
 
-To install the required dependencies, run the following command:
-
-```bash
-pip install opencv-python mediapipe numpy tensorflow
+## Directory Structure
+```
+face.py                  # Main script for video processing and emotion recognition
+FER_Model.h5             # Pre-trained FER model file (download separately)
+requirements.txt         # Python dependencies
+readme.md                # Project documentation
+plan.md                  # Project plan and navigation guide
+input.mp4                # Example input video (replace with your own)
+output-with-audio.mp4    # Example output video
 ```
 
-## Setting Up Virtual Environment
+## Setup Instructions
 
-1. Create and activate a virtual environment:
-
-   ```bash
-   # Create a virtual environment
-   python -m venv venv
-
-   # Activate the virtual environment
-   # On macOS/Linux:
-   source venv/bin/activate
-   # On Windows:
-   .\venv\Scripts\activate
-   ```
-
-2. Install dependencies in the virtual environment:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Verify the installation:
-
-   ```bash
-   python -c "import cv2; import mediapipe; import numpy; import tensorflow"
-   ```
-
-4. When you're done, you can deactivate the virtual environment:
-
-   ```bash
-   deactivate
-   ```
-
-## Downloading Required Files
-
-1. **FER (Facial Emotion Recognition) Model:**
-
-   - Download the FER model files from the following link:
-     [FER Model](https://github.com/priya-dwivedi/face_and_emotion_detection/tree/master/emotion_detector_models)
-     
-     Place the downloaded files in the project directory, and update the file path in the script:
-
-     ```python
-     fer_model = load_model("path/to/FER_model.h5")  # Replace with the actual path
-     ```
-
-2. **Emotion Recognition Retail Model:**
-
-   - Download the Emotion Recognition Retail model files from the OpenVINO Model Zoo:
-     [Emotion Recognition Retail Model](https://github.com/openvinotoolkit/openvino_models/tree/main/intel/emotions-recognition-retail-0003/FP32)
-
-     Place the downloaded files (emotions-recognition-retail-0003.bin and emotions-recognition-retail-0003.xml) in the project directory, and update the file paths in the script:
-
-     ```python
-     emotion_model_bin = "path/to/emotions-recognition-retail-0003.bin"  # Replace with the actual path
-     emotion_model_xml = "path/to/emotions-recognition-retail-0003.xml"  # Replace with the actual path
-     ```
-
-3. **Other Dependencies:**
-
-   - Install the necessary Python libraries by running:
-
-     ```bash
-     pip install opencv-python mediapipe numpy tensorflow
-     ```
-
-   - Make sure to have OpenCV, Mediapipe, NumPy, and TensorFlow installed.
-
-
-## Usage
-
-1. Clone this repository:
-
+### 1. Clone the Repository
 ```bash
 git clone <repository-url>
-cd <repository-directory>
+cd python-face-emotion-video
 ```
 
-2. Install dependencies:
+### 2. Create and Activate a Virtual Environment
+#### On macOS/Linux:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+#### On Windows:
+```bash
+python -m venv venv
+.\venv\Scripts\activate
+```
 
+### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Download the FER (Facial Emotion Recognition) model:
+### 4. Download the FER Model
+- Download the FER model file (`FER_Model.h5`) from [here](https://github.com/priya-dwivedi/face_and_emotion_detection/tree/master/emotion_detector_models).
+- Place `FER_Model.h5` in the project directory.
+- Update the model path in the script if necessary:
+  ```python
+  fer_model = load_model("FER_Model.h5")
+  ```
 
-   Replace `"path/to/FER_model.h5"` with the actual path where the FER model is located.
+### 5. Prepare Your Input Video
+- Place your input video in the project directory (e.g., `input.mp4`).
+- Update the input/output filenames in the script if needed.
 
-4. Run the script:
-
+### 6. Run the Script
 ```bash
-python emotion_recognition.py
+python face.py
+```
+- The script will process the input video, annotate facial landmarks, and display/save the video with emotion labels.
+
+### 7. Deactivate the Virtual Environment (when done)
+```bash
+deactivate
 ```
 
-The script will process the input video, annotate facial landmarks, and display the video with emotion labels.
-
 ## Notes
+- The script assumes the input video is named `input.mp4` and the output will be saved as `output-with-audio.mp4`. You can change these in the script.
+- Make sure the FER model file is present in the project directory.
+- Press `q` to exit the video display window during processing.
 
-- The script assumes the input video is located at `"nosubs.mp4"`. Replace this with the actual path of your video.
-- The output video will be saved as `"nosubs-output.mp4"`.
-- Press `q` to exit the application.
-
-## Additional Information
-
-For more details on the project and its components, refer to the code documentation and associated resources.
+## Troubleshooting
+- If you encounter missing package errors, ensure your virtual environment is activated and dependencies are installed.
+- For model loading errors, verify the path to `FER_Model.h5` is correct.
 
 ## Acknowledgments
-
-- [Mediapipe](https://google.github.io/mediapipe/) for providing facial landmark detection capabilities.
-- [FER Model](https://github.com/priya-dwivedi/face_and_emotion_detection/tree/master/emotion_detector_models) for emotion recognition.
-
-Feel free to explore and modify the code to suit your specific requirements.
-
----
-
-*Note: Adjust the paths, video filenames, and other configurations based on your local setup.*
+- [Mediapipe](https://google.github.io/mediapipe/) for facial landmark detection
+- [FER Model](https://github.com/priya-dwivedi/face_and_emotion_detection/tree/master/emotion_detector_models) for emotion recognition
