@@ -3,3 +3,5 @@
 *.bin
 *.xml
 *.dat
+
+venv/

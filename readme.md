@@ -22,6 +22,39 @@ To install the required dependencies, run the following command:
 pip install opencv-python mediapipe numpy tensorflow
 ```
 
+## Setting Up Virtual Environment
+
+1. Create and activate a virtual environment:
+
+   ```bash
+   # Create a virtual environment
+   python -m venv venv
+
+   # Activate the virtual environment
+   # On macOS/Linux:
+   source venv/bin/activate
+   # On Windows:
+   .\venv\Scripts\activate
+   ```
+
+2. Install dependencies in the virtual environment:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Verify the installation:
+
+   ```bash
+   python -c "import cv2; import mediapipe; import numpy; import tensorflow"
+   ```
+
+4. When you're done, you can deactivate the virtual environment:
+
+   ```bash
+   deactivate
+   ```
+
 ## Downloading Required Files
 
 1. **FER (Facial Emotion Recognition) Model:**

@@ -4,7 +4,7 @@ import numpy as np
 from tensorflow.keras.models import load_model
 
 # Load FER model
-fer_model = load_model("FER_model.h5")  # Replace with the actual path
+fer_model = load_model("FER_Model.h5")  # Replace with the actual path
 
 emotions = ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
 
@@ -21,7 +21,7 @@ def get_emotion_labels(emotion_scores):
         if score > 0.1
     ]
     emotion_labels.sort(key=lambda x: x[1], reverse=True)
-    return "\u000A".join(
+    return "\u000a".join(
         [f"{emotion}: {score:.2%}" for emotion, score in emotion_labels]
     )
 
@@ -56,7 +56,7 @@ def draw_emotion_labels(frame, pos_x, pos_y, emotion_labels):
 
 
 def main():
-    cap = cv2.VideoCapture("nosubs.mp4")  # Replace with the actual video path
+    cap = cv2.VideoCapture("input.mp4")  # Replace with the actual video path
 
     # get the framerate of cap
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -66,13 +66,12 @@ def main():
 
     # Define the codec and create a VideoWriter object
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-    out = cv2.VideoWriter(
-        "nosubs-output.mp4", fourcc, fps, (int(cap.get(3)), int(cap.get(4)))
-    )
+    out = cv2.VideoWriter("output.mp4", fourcc, fps, (int(cap.get(3)), int(cap.get(4))))
 
     while True:
         ret, frame = cap.read()
         if not ret:
+            print("-----------not cap")
             break
 
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
